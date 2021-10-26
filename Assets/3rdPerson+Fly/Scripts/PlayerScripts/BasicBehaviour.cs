@@ -279,6 +279,7 @@ public class BasicBehaviour : MonoBehaviour
     public virtual bool IsSprinting()
 	{
 		return sprint && IsMoving() && CanSprint();
+
 	}
 
 	// Check if player can sprint (all behaviours must allow).
@@ -334,20 +335,22 @@ public class BasicBehaviour : MonoBehaviour
 	
 	public void Dodge()
     {
-		anim.SetTrigger("Dodge");
+		if(mP_Player.mp_Cur > 10)
+        {
+			anim.SetTrigger("Dodge");
 
-		if (_DodgeSound)
-		{
-			if (!_DodgeSound.isPlaying)
+			if (_DodgeSound)
 			{
-				_DodgeSound.Play();
+				if (!_DodgeSound.isPlaying)
+				{
+					_DodgeSound.Play();
+				}
+			}
+			else
+			{
+				_DodgeSound.Stop();
 			}
 		}
-		else
-		{
-			_DodgeSound.Stop();
-		}
-
     }
 	
 	public void Block()

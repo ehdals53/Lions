@@ -29,7 +29,6 @@ public class HitFeel : MonoBehaviour
         Time.timeScale = 0.01f;
 
         yield return new WaitForSecondsRealtime(slowTime);
-
         Time.timeScale = 1;
         stopping = false;
     }
@@ -42,12 +41,13 @@ public class HitFeel : MonoBehaviour
             cam.position.y + Random.Range(-shake, shake), 
             cam.position.z + Random.Range(-shake, shake));
         yield return new WaitForSecondsRealtime(0.05f);
+        
         cam.position =
             new Vector3(cam.position.x + Random.Range(-shake, shake),
             cam.position.y + Random.Range(-shake, shake),
             cam.position.z + Random.Range(-shake, shake));
         yield return new WaitForSecondsRealtime(0.05f);
-
+        
 
         cam.position = camPosition_original;
     }

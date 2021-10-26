@@ -54,7 +54,7 @@ public class MoveBehaviour : GenericBehaviour
 			jump = true;
 			_JumpSound.Play();
 		}
-		if (!jump && Input.GetButtonDown(dodgeButton) && (mP_Player.mp_Cur > 0))
+		if (!jump && Input.GetButtonDown(dodgeButton) && (mP_Player.mp_Cur > 10))
 		{
 			basicBehaviour.Dodge();
 		}
