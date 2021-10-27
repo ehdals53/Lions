@@ -7,10 +7,7 @@ public class MoveBehaviour : GenericBehaviour
 	public float runSpeed = 1.4f;                   // Default run speed.
 	public float sprintSpeed = 2.0f;                // Default sprint speed.
 	public float speedDampTime = 0.1f;              // Default damp time to change the animations based on current speed.
-	public string dodgeButton = "Dodge";			// Default dodge button.
 	public string jumpButton = "Jump";              // Default jump button.
-	public string blockButton = "Block";            // Default block button.
-	public string backstepButton = "BackStep";
 	public float jumpHeight = 1.5f;                 // Default jump height.
 	public float jumpIntertialForce = 10f;          // Default horizontal inertial force when jumping.
 
@@ -27,7 +24,6 @@ public class MoveBehaviour : GenericBehaviour
 	public AudioSource _WalkSound;
 	public AudioSource _RunSound;
 	public AudioSource _SprintSound;
-	public AudioSource _JumpSound;
 
 	// Start is always called after any Awake functions.
 	void Start()
@@ -52,21 +48,6 @@ public class MoveBehaviour : GenericBehaviour
 		if (!jump && Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
 			jump = true;
-			_JumpSound.Play();
-		}
-		if (!jump && Input.GetButtonDown(dodgeButton) && (mP_Player.mp_Cur > 10))
-		{
-			basicBehaviour.Dodge();
-		}
-		
-		if (!jump && Input.GetButtonDown(blockButton))
-		{
-			basicBehaviour.Block();
-		}
-
-		if (!jump && Input.GetButtonDown(backstepButton))
-		{
-			basicBehaviour.BackStep();
 		}
 	}
 
@@ -201,7 +182,7 @@ public class MoveBehaviour : GenericBehaviour
 		speedSeeker += Input.GetAxis("Mouse ScrollWheel");
 		speedSeeker = Mathf.Clamp(speedSeeker, walkSpeed, runSpeed);
 		speed *= speedSeeker;
-		if (behaviourManager.IsSprinting() && (mP_Player.mp_Cur > 0))
+		if (behaviourManager.IsSprinting() && (mP_Player.mp_Cur >= 0))
 		{
 			speed = sprintSpeed;
 		}

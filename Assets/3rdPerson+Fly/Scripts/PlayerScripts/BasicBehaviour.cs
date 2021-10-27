@@ -11,8 +11,10 @@ public class BasicBehaviour : MonoBehaviour
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
 	public string sprintButton = "Sprint";                // Default sprint button input name.
+	public string dodgeButton = "Dodge";                  // Default dodge button.
+	public string backstepButton = "BackStep";			  // Default BackStep button.
+	public string blockButton = "Block";				  // Default block button.
 
-	private bool enableAct;
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
 	private int currentBehaviour;                         // Reference to the current player behaviour.
@@ -31,12 +33,12 @@ public class BasicBehaviour : MonoBehaviour
 	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
 	private Vector3 colExtents;                           // Collider extents for ground test. 
 	private MP_Player mP_Player;
+	private readonly int hashDodge = Animator.StringToHash("Dodge");
+	private readonly int hashBlock = Animator.StringToHash("Block");
+	private readonly int hashBackstep = Animator.StringToHash("BackStep");
+	private readonly int hashNormalAttack = Animator.StringToHash("onNormalAttack");
+	private readonly int hashSmashAttack = Animator.StringToHash("onSmashAttack");
 
-	[Header("Player SOUNDS")]
-	public AudioSource _JumpSound;
-	public AudioSource _DodgeSound;
-	public AudioSource _BlockSound;
-	public AudioSource _BackStepSound;
 
 
 	// Get current horizontal and vertical axes.
@@ -57,7 +59,6 @@ public class BasicBehaviour : MonoBehaviour
 
 	void Awake ()
 	{
-		enableAct = true;
 		// Set up the references.
 		behaviours = new List<GenericBehaviour> ();
 		overridingBehaviours = new List<GenericBehaviour>();
@@ -90,6 +91,7 @@ public class BasicBehaviour : MonoBehaviour
 		// Set the correct camera FOV for sprint mode.
 		if(IsSprinting() && (mP_Player.mp_Cur > 0))
 		{
+			mP_Player.mp_Cur -= Time.deltaTime * mP_Player.sprint_Mp;
 			changedFOV = true;
 			camScript.SetFOV(sprintFOV);
 		}
@@ -102,6 +104,28 @@ public class BasicBehaviour : MonoBehaviour
 		anim.SetBool(groundedBool, IsGrounded());
 		//		WalkingSound();
 
+
+		if (Input.GetMouseButtonDown(0))
+        {
+			OnNormalAttack();
+		}
+		if (Input.GetMouseButtonDown(1))
+        {
+			OnSmashAttack();
+		}
+
+		if(Input.GetButtonDown(dodgeButton) && (mP_Player.mp_Cur >= 20) )
+        {
+			Dodge();
+        }
+		if(Input.GetButtonDown(backstepButton) && (mP_Player.mp_Cur >= 20))
+        {
+			BackStep();
+        }
+        if (Input.GetButtonDown(blockButton))
+        {
+			Block();
+        }
 	}
 	// Call the FixedUpdate functions of the active or overriding behaviours.
 	void FixedUpdate()
@@ -335,59 +359,29 @@ public class BasicBehaviour : MonoBehaviour
 	
 	public void Dodge()
     {
-		if(mP_Player.mp_Cur > 10)
-        {
-			anim.SetTrigger("Dodge");
-
-			if (_DodgeSound)
-			{
-				if (!_DodgeSound.isPlaying)
-				{
-					_DodgeSound.Play();
-				}
-			}
-			else
-			{
-				_DodgeSound.Stop();
-			}
-		}
+		anim.SetTrigger(hashDodge);
+		
     }
 	
 	public void Block()
     {
-		anim.SetTrigger("Block");
-
-		if (_BlockSound)
-		{
-			if (!_BlockSound.isPlaying)
-			{
-				_BlockSound.Play();
-			}
-		}
-		else
-		{
-			_BlockSound.Stop();
-		}
+		anim.SetTrigger(hashBlock);
 
     }
-	
 	public void BackStep()
     {
-		anim.SetTrigger("BackStep");
-
-		if (_BackStepSound)
-		{
-			if (!_BackStepSound.isPlaying)
-			{
-				_BackStepSound.Play();
-			}
-		}
-		else
-		{
-			_BackStepSound.Stop();
-		}
+		anim.SetTrigger(hashBackstep);
     }
-	
+	public void OnNormalAttack()
+	{
+		anim.SetTrigger(hashNormalAttack);
+	}
+	public void OnSmashAttack()
+	{
+		anim.SetTrigger(hashSmashAttack);
+	}
+
+
 	// Function to tell whether or not the player is on ground.
 	public bool IsGrounded()
 	{

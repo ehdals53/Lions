@@ -11,22 +11,19 @@ public class MP_Player : MonoBehaviour
     public Image mpBar_Front;
     public Image mpBar_Back;
 
-    public float dodge_Mp = 10.0f;
+    public float dodge_Mp = 20.0f;
+    public float backstep_Mp = 20.0f;
     public float sprint_Mp = 20.0f;
     public float regen_Mp = 10.0f;
-    private string dodgeButton = "Dodge";
-    private string sprintButton = "Sprint";
 
-    BasicBehaviour basicBehaviour;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        basicBehaviour = GetComponent<BasicBehaviour>();
         mp_Cur = mp;
 
     }
-    void Syncbar()
+    public void Syncbar()
     {
         mpBar_Front.fillAmount = mp_Cur / mp;
 
@@ -40,7 +37,7 @@ public class MP_Player : MonoBehaviour
             mpBar_Back.fillAmount = Mathf.Lerp(mpBar_Front.fillAmount, mpBar_Back.fillAmount, Time.deltaTime);
         }
     }
-    void MpRegen()
+    public void MpRegen()
     {
         mp_Cur += Time.deltaTime * regen_Mp;
 
@@ -51,16 +48,28 @@ public class MP_Player : MonoBehaviour
         
     }
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Syncbar();
         MpRegen();
-        MpCost();
     }
 
+    public void Dodge_MP()
+    {
+        mp_Cur -= dodge_Mp;
+    }
+    public void BackStep_MP()
+    {
+        mp_Cur -= backstep_Mp;
+    }
+    public void Sprint_MP()
+    {
+        mp_Cur -= sprint_Mp * Time.deltaTime;
+    }
+
+    /*
     void MpCost()
     {
-       
         
         if (Input.GetButtonDown(dodgeButton) && (mp_Cur > dodge_Mp))
         {
@@ -72,4 +81,5 @@ public class MP_Player : MonoBehaviour
         }
         
     }
+    */
 }

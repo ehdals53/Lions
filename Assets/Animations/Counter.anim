@@ -141937,16 +141937,37 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1833334
-    functionName: ChangeTag
-    data: Player
+  - time: 0.23333333
+    functionName: NormalAtk_SwordSound
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.2166667
-    functionName: ResetCombo
+  - time: 0.23333333
+    functionName: CounterAtk_Voice
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: NormalAtk_SwordSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2833333
+    functionName: NormalAtk_SwordSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.1833334
+    functionName: ChangeTag
+    data: Player
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -21,13 +21,10 @@ public class PlayerDamage : MonoBehaviour
     public bool isDie;
     private Animator anim;
     private readonly int die = Animator.StringToHash("PlayerDie");
+
     public GameObject player;
 
-    [Header("Player Hit Sound")]
-    public AudioSource hitSound_1;
-    public AudioSource hitSound_2;
-    public AudioSource dieSound;
-    public AudioSource CounterSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,12 +52,10 @@ public class PlayerDamage : MonoBehaviour
     {
         isDie = true;
         Debug.Log("PlayerDie!");
-        dieSound.Play();
         anim.SetTrigger(die);
         GetComponent<MoveBehaviour>().enabled = false;
         GetComponent<BasicBehaviour>().enabled = false;
         GetComponent<AimBehaviourBasic>().enabled = false;
-        GetComponent<Combo>().enabled = false;
         GetComponent<MP_Player>().enabled = false;
 
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
@@ -88,9 +83,8 @@ public class PlayerDamage : MonoBehaviour
                 switch (damageStep)
                 {
                     case 0:
-                        anim.Play("Rigidity");
-                        hitSound_1.Play();
-                        Debug.Log("damage");
+                        anim.Play("Light_Hit_1");
+                        Debug.Log("Lighthit");
                         Player_hp_Cur -= boss_NormalDamage;
                         boss_Normaldmg = string.Format("{0}", boss_NormalDamage);
                         DamageText.text = boss_Normaldmg;
@@ -101,9 +95,8 @@ public class PlayerDamage : MonoBehaviour
                         }
                         break;
                     case 1:
-                        anim.Play("Rigidity_2");
-                        hitSound_1.Play();
-                        Debug.Log("damage");
+                        anim.Play("Light_Hit_2");
+                        Debug.Log("Lighthit");
                         Player_hp_Cur -= boss_NormalDamage;
                         boss_Normaldmg = string.Format("{0}", boss_NormalDamage);
                         DamageText.text = boss_Normaldmg;
@@ -119,15 +112,14 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                Debug.Log("Miss");
-                DefenceText.text = "Miss";
+                Debug.Log("Defence");
+                DefenceText.text = "Defence";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                CounterSound.Play();
                 Debug.Log("Counter");
                 CounterText.text = "Counter";
                 CounterText.gameObject.SetActive(true);
@@ -139,9 +131,8 @@ public class PlayerDamage : MonoBehaviour
         {
             if (gameObject.tag == "Player")
             {
-                anim.Play("Rigidity_3");
-                hitSound_2.Play();
-                Debug.Log("Critical");
+                anim.Play("Heavy_Hit");
+                Debug.Log("Heavyhit");
                 Player_hp_Cur -= boss_SmashDamage;
                 boss_Smashdmg = string.Format("{0}", boss_SmashDamage);
                 DamageText.text = boss_Smashdmg;
@@ -156,15 +147,14 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                Debug.Log("Miss");
-                DefenceText.text = "Miss";
+                Debug.Log("Defence");
+                DefenceText.text = "Defence";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                CounterSound.Play();
                 Debug.Log("Counter");
                 CounterText.text = "Counter";
                 CounterText.gameObject.SetActive(true);
