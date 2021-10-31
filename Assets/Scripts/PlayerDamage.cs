@@ -51,7 +51,6 @@ public class PlayerDamage : MonoBehaviour
     public void PlayerDie()
     {
         isDie = true;
-        Debug.Log("PlayerDie!");
         anim.SetTrigger(die);
         GetComponent<MoveBehaviour>().enabled = false;
         GetComponent<BasicBehaviour>().enabled = false;
@@ -84,7 +83,6 @@ public class PlayerDamage : MonoBehaviour
                 {
                     case 0:
                         anim.Play("Light_Hit_1");
-                        Debug.Log("Lighthit");
                         Player_hp_Cur -= boss_NormalDamage;
                         boss_Normaldmg = string.Format("{0}", boss_NormalDamage);
                         DamageText.text = boss_Normaldmg;
@@ -96,7 +94,6 @@ public class PlayerDamage : MonoBehaviour
                         break;
                     case 1:
                         anim.Play("Light_Hit_2");
-                        Debug.Log("Lighthit");
                         Player_hp_Cur -= boss_NormalDamage;
                         boss_Normaldmg = string.Format("{0}", boss_NormalDamage);
                         DamageText.text = boss_Normaldmg;
@@ -112,15 +109,13 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                Debug.Log("Defence");
-                DefenceText.text = "Defence";
+                DefenceText.text = "Miss";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                Debug.Log("Counter");
                 CounterText.text = "Counter";
                 CounterText.gameObject.SetActive(true);
 
@@ -132,7 +127,6 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 anim.Play("Heavy_Hit");
-                Debug.Log("Heavyhit");
                 Player_hp_Cur -= boss_SmashDamage;
                 boss_Smashdmg = string.Format("{0}", boss_SmashDamage);
                 DamageText.text = boss_Smashdmg;
@@ -147,15 +141,13 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                Debug.Log("Defence");
-                DefenceText.text = "Defence";
+                DefenceText.text = "Miss";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                Debug.Log("Counter");
                 CounterText.text = "Counter";
                 CounterText.gameObject.SetActive(true);
 

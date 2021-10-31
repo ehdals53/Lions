@@ -9,6 +9,7 @@ public class EnemyFire : MonoBehaviour
     private Transform enemyTr;
     private MoveAgent moveAgent;
     public bool isFire = false;
+    public float AtkDist = 7.0f;
     private int attackNumber;
     private bool enableAct;
     private float nextFire = 0.0f;
@@ -52,7 +53,7 @@ public class EnemyFire : MonoBehaviour
     {
         float dist = Vector3.Distance(playerTr.position, enemyTr.position);
 
-        if(dist <= 5)
+        if(dist <= AtkDist)
         {
             switch (attackNumber)
             {

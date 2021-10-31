@@ -23,6 +23,7 @@ TagManager:
   - die
   - Boss
   - Die
+  - Ocean
   layers:
   - Default
   - TransparentFX
