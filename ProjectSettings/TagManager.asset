@@ -24,6 +24,7 @@ TagManager:
   - Boss
   - Die
   - Ocean
+  - Portal
   layers:
   - Default
   - TransparentFX

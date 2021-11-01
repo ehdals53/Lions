@@ -1880,7 +1880,7 @@ AnimatorStateMachine:
     m_Position: {x: 750, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7163419075145466528}
-    m_Position: {x: 210, y: 260, z: 0}
+    m_Position: {x: 230, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4204378793471062154}
     m_Position: {x: -150, y: 270, z: 0}
@@ -2697,13 +2697,13 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Boss_Die
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2774762333167956661}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
+  m_IKOnFeet: 1
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0

@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     public float attackDist = 5.0f;
     public float traceDist = 10.0f;
     public bool isDie = false;
+    public GameObject Portal;
     private WaitForSeconds ws;
     private MoveAgent moveAgent;
     private EnemyFire enemyFire;
@@ -41,6 +42,7 @@ public class EnemyAI : MonoBehaviour
         ws = new WaitForSeconds(0.3f);
         animator.SetFloat(hashOffset, Random.Range(0.0f, 1.0f));
         animator.SetFloat(hashWalkSpeed, Random.Range(1.0f, 1.2f));
+        Portal.SetActive(false);
 
     }
     void OnEnable()
@@ -102,7 +104,8 @@ public class EnemyAI : MonoBehaviour
                     enemyFire.isFire = false;
                     moveAgent.Stop();
                     animator.SetTrigger(hashDie);
-                    GetComponent<CapsuleCollider>().enabled = false;
+                    GetComponent<BoxCollider>().enabled = false;
+                    Portal.SetActive(true);
                     break;
 
             }
