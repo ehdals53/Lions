@@ -347,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 423809448}
     - target: {fileID: 638059522449440231, guid: 0303af04994988748a7912f363ed89c8, type: 3}
       propertyPath: boss_hp
-      value: 1000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 638059522449440231, guid: 0303af04994988748a7912f363ed89c8, type: 3}
       propertyPath: hitFeel

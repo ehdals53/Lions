@@ -109,14 +109,14 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                DefenceText.text = "Miss";
+                DefenceText.text = "방어 !";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                CounterText.text = "Counter";
+                CounterText.text = "반격 !";
                 CounterText.gameObject.SetActive(true);
 
             }
@@ -141,14 +141,14 @@ public class PlayerDamage : MonoBehaviour
             if (gameObject.tag == "Defence")
             {
                 anim.Play("Defence_hit");
-                DefenceText.text = "Miss";
+                DefenceText.text = "방어 !";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
                 anim.Play("Counter");
-                CounterText.text = "Counter";
+                CounterText.text = "반격 !";
                 CounterText.gameObject.SetActive(true);
 
             }
