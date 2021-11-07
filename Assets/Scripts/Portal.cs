@@ -14,12 +14,11 @@ public class Portal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            portalText.text = "Press Enter to go to the next stage";
+            portalText.text = "Space 키를 누르면 다음 스테이지로 이동합니다 !";
             portalMessage.gameObject.SetActive(true);
-            if (Input.GetButtonDown("Enter")) 
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 SceneManager.LoadScene("2Stage");
-
             }
 
         }
