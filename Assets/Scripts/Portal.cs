@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class Portal : MonoBehaviour
+public class Portal1 : MonoBehaviour
 {
     public GameObject portalMessage;
     public TextMeshProUGUI portalText;
@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
             portalMessage.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)) 
             {
-                SceneManager.LoadScene("2Stage");
+                SceneManager.LoadScene("3Stage");
             }
 
         }
