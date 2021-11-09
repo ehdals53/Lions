@@ -3,22 +3,26 @@
 // MoveBehaviour inherits from GenericBehaviour. This class corresponds to basic walk and run behaviour, it is the default behaviour.
 public class MoveBehaviour : GenericBehaviour
 {
-	public float walkSpeed = 0.6f;                 // Default walk speed.
-	public float runSpeed = 1.4f;                   // Default run speed.
+	public float walkSpeed = 0.15f;                 // Default walk speed.
+	public float runSpeed = 1.0f;                   // Default run speed.
 	public float sprintSpeed = 2.0f;                // Default sprint speed.
 	public float speedDampTime = 0.1f;              // Default damp time to change the animations based on current speed.
-	public string jumpButton = "Jump";              // Default jump button.
 	public float jumpHeight = 1.5f;                 // Default jump height.
-	public float jumpIntertialForce = 10f;          // Default horizontal inertial force when jumping.
+	private float gravity = -9.81f;
+	private Vector3 moveDirection;
+
+	//public float jumpIntertialForce = 10f;          // Default horizontal inertial force when jumping.
+	
 
 	private float speed, speedSeeker;               // Moving speed.
-	private int jumpBool;                           // Animator variable related to jumping.
+	//private int jumpBool;                           // Animator variable related to jumping.
 	private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
-	private bool jump;                              // Boolean to determine whether or not the player started a jump.
+	//private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
 
 	private BasicBehaviour basicBehaviour;
 	private MP_Player mP_Player;
+	private Animator anim;
 
 	[Header("Player SOUNDS")]
 	public AudioSource _WalkSound;
@@ -28,8 +32,9 @@ public class MoveBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
 	void Start()
 	{
+		anim = GetComponent<Animator>();
 		// Set up the references.
-		jumpBool = Animator.StringToHash("Jump");
+		//jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
 		behaviourManager.GetAnim.SetBool(groundedBool, true);
 
@@ -44,11 +49,8 @@ public class MoveBehaviour : GenericBehaviour
 	// Update is used to set features regardless the active behaviour.
 	void Update()
 	{
-		// Get jump input.
-		if (!jump && Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
-		{
-			jump = true;
-		}
+
+		
 	}
 
 	// LocalFixedUpdate overrides the virtual function of the base class.
@@ -58,7 +60,7 @@ public class MoveBehaviour : GenericBehaviour
 		MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
 
 		// Call the jump manager.
-		JumpManagement();
+		//JumpManagement();
 		WalkingSound();
 
 	}
@@ -112,7 +114,14 @@ public class MoveBehaviour : GenericBehaviour
 			_SprintSound.Stop();
 		}
 	}
-
+	public void JumpTo()
+    {
+        if (behaviourManager.IsGrounded())
+        {
+			moveDirection.y = jumpHeight;
+        }
+    }
+	/*
 	// Execute the idle and walk/run jump movements.
 	void JumpManagement()
 	{
@@ -158,6 +167,7 @@ public class MoveBehaviour : GenericBehaviour
 			}
 		}
 	}
+	*/
 	// Deal with the basic player movement
 	void MovementManagement(float horizontal, float vertical)
 	{
@@ -167,7 +177,7 @@ public class MoveBehaviour : GenericBehaviour
 			behaviourManager.GetRigidBody.useGravity = true;
 		}
 		// Avoid takeoff when reached a slope end.
-		else if (!behaviourManager.GetAnim.GetBool(jumpBool) && behaviourManager.GetRigidBody.velocity.y > 0)
+		else if (/*!behaviourManager.GetAnim.GetBool(jumpBool) && */behaviourManager.GetRigidBody.velocity.y > 0)
 		{
 			RemoveVerticalVelocity();
 		}

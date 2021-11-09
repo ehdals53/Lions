@@ -13,8 +13,7 @@ public class BasicBehaviour : MonoBehaviour
 	public string sprintButton = "Sprint";                // Default sprint button input name.
 	public string dodgeButton = "Dodge";                  // Default dodge button.
 	public string backstepButton = "BackStep";			  // Default BackStep button.
-	public string blockButton = "Block";				  // Default block button.
-
+	public string blockButton = "Block";                  // Default block button.
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
 	private int currentBehaviour;                         // Reference to the current player behaviour.
@@ -124,8 +123,9 @@ public class BasicBehaviour : MonoBehaviour
         }
         if (Input.GetButtonDown(blockButton))
         {
-			Block();
+            Block();
         }
+
 	}
 	// Call the FixedUpdate functions of the active or overriding behaviours.
 	void FixedUpdate()
