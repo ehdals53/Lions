@@ -1744,20 +1744,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
+      propertyPath: airSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
       propertyPath: jumpHeight
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
+      propertyPath: locomotionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
       propertyPath: freeSpeed.walkSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
       propertyPath: freeSpeed.sprintSpeed
-      value: 6
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
+      propertyPath: strafeSpeed.walkSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
       propertyPath: freeSpeed.runningSpeed
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
+      propertyPath: strafeSpeed.sprintSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903540765351477772, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
+      propertyPath: strafeSpeed.runningSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6408625249025823725, guid: 4089a09284a0550498ee4e64b1c1c3da, type: 3}
       propertyPath: mpBar_Back

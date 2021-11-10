@@ -165,6 +165,7 @@ namespace Invector.vCharacterController
 
         public virtual void MoveCharacter(Vector3 _direction)
         {
+
             // calculate input smooth
             inputSmooth = Vector3.Lerp(inputSmooth, input, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
 
@@ -183,10 +184,12 @@ namespace Invector.vCharacterController
             bool useVerticalVelocity = true;
             if (useVerticalVelocity) targetVelocity.y = _rigidbody.velocity.y;
             _rigidbody.velocity = targetVelocity;
+
         }
 
         public virtual void CheckSlopeLimit()
         {
+
             if (input.sqrMagnitude < 0.1) return;
 
             RaycastHit hitinfo;

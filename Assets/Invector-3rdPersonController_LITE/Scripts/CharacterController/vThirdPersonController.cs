@@ -56,6 +56,7 @@ namespace Invector.vCharacterController
 
         public virtual void UpdateMoveDirection(Transform referenceTransform = null)
         {
+
             if (input.magnitude <= 0.01)
             {
                 moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
@@ -123,6 +124,14 @@ namespace Invector.vCharacterController
                 animator.CrossFadeInFixedTime("Jump", 0.1f);
             else
                 animator.CrossFadeInFixedTime("JumpMove", .2f);
+        }
+        public virtual void ComboAttack()
+        {
+            animator.SetTrigger("Combo");
+        }
+        public virtual void SkillAttack()
+        {
+            animator.SetTrigger("Skill");
         }
     }
 }

@@ -40,6 +40,15 @@ namespace Invector.vCharacterController
         {
             InputHandle();                  // update the input methods
             cc.UpdateAnimator();            // updates the Animator Parameters
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                cc.ComboAttack();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                cc.SkillAttack();
+            }
         }
 
         public virtual void OnAnimatorMove()
@@ -145,6 +154,8 @@ namespace Invector.vCharacterController
                 cc.Jump();
         }
 
-        #endregion       
+        // Input to trigger Attack
+        #endregion
+
     }
 }

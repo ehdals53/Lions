@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dca154178f0c4c14da932e25559a6a76
+guid: 2d69fe3d8a2363c4089d058b918b120b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -974,7 +974,7 @@ ModelImporter:
     second: Grru_Katana
   - first:
       74: 7400000
-    second: Jump_Attack_Combo_3
+    second: Jump_Attack_Combo_5
   - first:
       95: 9500000
     second: //RootNode
@@ -999,10 +999,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 21.737913 mm\n\t'calf_l' : position error = 9.209492 mm\n\t'foot_l'
-      : position error = 5.667253 mm\n\t'ball_l' : position error = 7.205400 mm\n\t'thigh_r'
-      : position error = 21.667652 mm\n\t'calf_r' : position error = 21.091047 mm\n\t'foot_r'
-      : position error = 9.058693 mm\n\t'ball_r' : position error = 1.910504 mm\n"
+      : position error = 17.900700 mm\n\t'calf_l' : position error = 8.668792 mm\n\t'foot_l'
+      : position error = 6.066094 mm\n\t'ball_l' : position error = 9.378444 mm\n\t'thigh_r'
+      : position error = 17.843662 mm\n\t'calf_r' : position error = 29.022703 mm\n\t'foot_r'
+      : position error = 11.450140 mm\n\t'ball_r' : position error = 7.942986 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -1022,11 +1022,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump_Attack_Combo_3
+      name: Jump_Attack_Combo_5
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 42
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1036,12 +1036,12 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -1052,7 +1052,7 @@ ModelImporter:
       - path: Grruzam_Base_Modeling
         weight: 0
       - path: root
-        weight: 0
+        weight: 1
       - path: root/ik_foot_root
         weight: 0
       - path: root/ik_foot_root/ik_foot_l
@@ -1062,63 +1062,63 @@ ModelImporter:
       - path: root/ik_hand_root
         weight: 0
       - path: root/pelvis
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l/index_03_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l/middle_03_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l/pinky_03_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l/ring_03_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l/thumb_03_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/lowerarm_twist_01_l
         weight: 0
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/upperarm_twist_01_l
         weight: 0
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ik_hand_gun
         weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ik_hand_gun/ik_hand_l
@@ -1126,65 +1126,65 @@ ModelImporter:
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ik_hand_gun/ik_hand_r
         weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r/index_03_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r/middle_03_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r/pinky_03_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r/ring_03_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r/thumb_03_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/lowerarm_twist_01_r
         weight: 0
       - path: root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/upperarm_twist_01_r
         weight: 0
       - path: root/pelvis/spine_01/spine_02/spine_03/neck_01
-        weight: 0
+        weight: 1
       - path: root/pelvis/spine_01/spine_02/spine_03/neck_01/head
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_l/calf_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_l/calf_l/calf_twist_01_l
         weight: 0
       - path: root/pelvis/thigh_l/calf_l/foot_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_l/calf_l/foot_l/ball_l
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_l/thigh_twist_01_l
         weight: 0
       - path: root/pelvis/thigh_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_r/calf_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_r/calf_r/calf_twist_01_r
         weight: 0
       - path: root/pelvis/thigh_r/calf_r/foot_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_r/calf_r/foot_r/ball_r
-        weight: 0
+        weight: 1
       - path: root/pelvis/thigh_r/thigh_twist_01_r
         weight: 0
       maskType: 1

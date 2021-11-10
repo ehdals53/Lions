@@ -59,5 +59,8 @@ namespace Invector.vCharacterController
         public static int IsStrafing = Animator.StringToHash("IsStrafing");
         public static int IsSprinting = Animator.StringToHash("IsSprinting");
         public static int GroundDistance = Animator.StringToHash("GroundDistance");
+        public static int ComboAtk = Animator.StringToHash("Combo");
+        public static int SkillAtk = Animator.StringToHash("Skill");
+
     }
 }
