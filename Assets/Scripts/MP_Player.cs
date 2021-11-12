@@ -11,14 +11,16 @@ public class MP_Player : MonoBehaviour
     public Image mpBar_Front;
     public Image mpBar_Back;
 
-    public float dodge_Mp = 20.0f;
-    public float backstep_Mp = 20.0f;
-    public float sprint_Mp = 20.0f;
-    public float regen_Mp = 10.0f;
+    public float DodgeMP = 20.0f;
+    public float GuardMP = 20.0f;
+    public float SprintMP = 20.0f;
+    public float SkillMP = 20.0f;
+
+    public float RegenMP = 10.0f;
 
 
     // Start is called before the first frame update
-    public void Start()
+    private void Start()
     {
         mp_Cur = mp;
 
@@ -39,7 +41,7 @@ public class MP_Player : MonoBehaviour
     }
     public void MpRegen()
     {
-        mp_Cur += Time.deltaTime * regen_Mp;
+        mp_Cur += Time.deltaTime * RegenMP;
 
         if (mp_Cur > mp)
         {
@@ -48,7 +50,7 @@ public class MP_Player : MonoBehaviour
         
     }
     // Update is called once per frame
-    public void Update()
+    private void Update()
     {
         Syncbar();
         MpRegen();
@@ -56,30 +58,30 @@ public class MP_Player : MonoBehaviour
 
     public void Dodge_MP()
     {
-        mp_Cur -= dodge_Mp;
+        if(mp_Cur > DodgeMP)
+        {
+            mp_Cur -= DodgeMP;
+        }
     }
-    public void BackStep_MP()
+    public void Guard_MP()
     {
-        mp_Cur -= backstep_Mp;
+        if(mp_Cur > GuardMP)
+        {
+            mp_Cur -= GuardMP;
+        }
+    }
+    public void Skill_MP()
+    {
+        if(mp_Cur > SkillMP)
+        {
+            mp_Cur -= GuardMP;
+        }
     }
     public void Sprint_MP()
     {
-        mp_Cur -= sprint_Mp * Time.deltaTime;
-    }
-
-    /*
-    void MpCost()
-    {
-        
-        if (Input.GetButtonDown(dodgeButton) && (mp_Cur > dodge_Mp))
+        if (mp_Cur > 1.0f)
         {
-            mp_Cur -= dodge_Mp;
+            mp_Cur -= SprintMP * Time.deltaTime;
         }
-        if (Input.GetButton(sprintButton) && (mp_Cur > 0))
-        {
-            mp_Cur -= Time.deltaTime * sprint_Mp;
-        }
-        
-    }
-    */
+    } 
 }

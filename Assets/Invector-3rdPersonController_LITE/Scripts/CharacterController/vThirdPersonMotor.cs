@@ -151,6 +151,7 @@ namespace Invector.vCharacterController
             CheckSlopeLimit();
             ControlJumpBehaviour();
             AirControl();
+
         }
 
         #region Locomotion
@@ -213,7 +214,7 @@ namespace Invector.vCharacterController
             }
             stopMove = false;
         }
-
+        
         public virtual void RotateToPosition(Vector3 position)
         {
             Vector3 desiredDirection = position - transform.position;

@@ -13,11 +13,13 @@ namespace Invector.vCharacterController
 
         #endregion  
 
+
         public virtual void UpdateAnimator()
         {
+
             if (animator == null || !animator.enabled) return;
 
-            animator.SetBool(vAnimatorParameters.IsStrafing, isStrafing); ;
+            animator.SetBool(vAnimatorParameters.IsStrafing, isStrafing);
             animator.SetBool(vAnimatorParameters.IsSprinting, isSprinting);
             animator.SetBool(vAnimatorParameters.IsGrounded, isGrounded);
             animator.SetFloat(vAnimatorParameters.GroundDistance, groundDistance);
@@ -27,6 +29,7 @@ namespace Invector.vCharacterController
                 animator.SetFloat(vAnimatorParameters.InputHorizontal, stopMove ? 0 : horizontalSpeed, strafeSpeed.animationSmooth, Time.deltaTime);
                 animator.SetFloat(vAnimatorParameters.InputVertical, stopMove ? 0 : verticalSpeed, strafeSpeed.animationSmooth, Time.deltaTime);
             }
+
             else
             {
                 animator.SetFloat(vAnimatorParameters.InputVertical, stopMove ? 0 : verticalSpeed, freeSpeed.animationSmooth, Time.deltaTime);
@@ -48,8 +51,8 @@ namespace Invector.vCharacterController
             else
                 inputMagnitude = Mathf.Clamp(isSprinting ? newInput.magnitude + 0.5f : newInput.magnitude, 0, isSprinting ? sprintSpeed : runningSpeed);
         }
-    }
 
+    }
     public static partial class vAnimatorParameters
     {
         public static int InputHorizontal = Animator.StringToHash("InputHorizontal");
@@ -59,8 +62,6 @@ namespace Invector.vCharacterController
         public static int IsStrafing = Animator.StringToHash("IsStrafing");
         public static int IsSprinting = Animator.StringToHash("IsSprinting");
         public static int GroundDistance = Animator.StringToHash("GroundDistance");
-        public static int ComboAtk = Animator.StringToHash("Combo");
-        public static int SkillAtk = Animator.StringToHash("Skill");
 
     }
 }

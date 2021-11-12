@@ -44282,6 +44282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6254192954655861774, guid: ac4a172fd13e2f2428040f2b1f8efc8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8793662225775384864, guid: ac4a172fd13e2f2428040f2b1f8efc8e, type: 3}
       propertyPath: Die_voice
       value: 
@@ -44432,6 +44436,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8798141663994800311, guid: ac4a172fd13e2f2428040f2b1f8efc8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888581476354086161, guid: ac4a172fd13e2f2428040f2b1f8efc8e, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

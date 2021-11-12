@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 // This class manages which player behaviour is active or overriding, and call its local functions.
 // Contains basic setup and common functions used by all the player behaviours.
 public class BasicBehaviour : MonoBehaviour
 {
-	
 	public Transform playerCamera;                        // Reference to the camera that focus the player.
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
 	public string sprintButton = "Sprint";                // Default sprint button input name.
-	public string dodgeButton = "Dodge";                  // Default dodge button.
-	public string backstepButton = "BackStep";			  // Default BackStep button.
-	public string blockButton = "Block";                  // Default block button.
+
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
 	private int currentBehaviour;                         // Reference to the current player behaviour.
@@ -31,15 +27,8 @@ public class BasicBehaviour : MonoBehaviour
 	private Rigidbody rBody;                              // Reference to the player's rigidbody.
 	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
 	private Vector3 colExtents;                           // Collider extents for ground test. 
-	private MP_Player mP_Player;
-	private readonly int hashDodge = Animator.StringToHash("Dodge");
-	private readonly int hashBlock = Animator.StringToHash("Block");
-	private readonly int hashBackstep = Animator.StringToHash("BackStep");
-	private readonly int hashNormalAttack = Animator.StringToHash("onNormalAttack");
-	private readonly int hashSmashAttack = Animator.StringToHash("onSmashAttack");
 
-
-
+	MP_Player mp_Player;
 	// Get current horizontal and vertical axes.
 	public float GetH { get { return h; } }
 	public float GetV { get { return v; } }
@@ -66,12 +55,12 @@ public class BasicBehaviour : MonoBehaviour
 		vFloat = Animator.StringToHash("V");
 		camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic> ();
 		rBody = GetComponent<Rigidbody> ();
-		mP_Player = GetComponent<MP_Player>();
+
 		// Grounded verification variables.
 		groundedBool = Animator.StringToHash("Grounded");
 		colExtents = GetComponent<Collider>().bounds.extents;
 
-
+		mp_Player = GetComponent<MP_Player>();
 	}
 
 	void Update()
@@ -88,9 +77,8 @@ public class BasicBehaviour : MonoBehaviour
 		sprint = Input.GetButton (sprintButton);
 
 		// Set the correct camera FOV for sprint mode.
-		if(IsSprinting() && (mP_Player.mp_Cur > 0))
+		if(IsSprinting() && (mp_Player.mp_Cur > mp_Player.SprintMP))
 		{
-			mP_Player.mp_Cur -= Time.deltaTime * mP_Player.sprint_Mp;
 			changedFOV = true;
 			camScript.SetFOV(sprintFOV);
 		}
@@ -101,32 +89,8 @@ public class BasicBehaviour : MonoBehaviour
 		}
 		// Set the grounded test on the Animator Controller.
 		anim.SetBool(groundedBool, IsGrounded());
-		//		WalkingSound();
-
-
-		if (Input.GetMouseButtonDown(0))
-        {
-			OnNormalAttack();
-		}
-		if (Input.GetMouseButtonDown(1))
-        {
-			OnSmashAttack();
-		}
-
-		if(Input.GetButtonDown(dodgeButton) && (mP_Player.mp_Cur >= 20) )
-        {
-			Dodge();
-        }
-		if(Input.GetButtonDown(backstepButton) && (mP_Player.mp_Cur >= 20))
-        {
-			BackStep();
-        }
-        if (Input.GetButtonDown(blockButton))
-        {
-            Block();
-        }
-
 	}
+
 	// Call the FixedUpdate functions of the active or overriding behaviours.
 	void FixedUpdate()
 	{
@@ -296,14 +260,13 @@ public class BasicBehaviour : MonoBehaviour
 			behaviourLocked = 0;
 		}
 	}
-    
-    // Common functions to any behaviour:
 
-    // Check if player is sprinting.
-    public virtual bool IsSprinting()
+	// Common functions to any behaviour:
+
+	// Check if player is sprinting.
+	public virtual bool IsSprinting()
 	{
-		return sprint && IsMoving() && CanSprint();
-
+		return sprint && IsMoving() && CanSprint() && IsSpintMP();
 	}
 
 	// Check if player can sprint (all behaviours must allow).
@@ -327,11 +290,20 @@ public class BasicBehaviour : MonoBehaviour
 	{
 		return h != 0;
 	}
-
+	// 질주 마나 체크
+	public bool IsSpintMP()
+    {
+		if (mp_Player.mp_Cur > 1.0f)
+        {
+			return true;
+		}
+		else
+			return false;
+    }
 	// Check if the player is moving.
 	public bool IsMoving()
 	{
-		return (h != 0) || (v != 0);
+		return (h != 0)|| (v != 0);
 	}
 
 	// Get the last player direction of facing.
@@ -339,6 +311,7 @@ public class BasicBehaviour : MonoBehaviour
 	{
 		return lastDirection;
 	}
+
 	// Set the last player direction of facing.
 	public void SetLastDirection(Vector3 direction)
 	{
@@ -356,31 +329,6 @@ public class BasicBehaviour : MonoBehaviour
 			rBody.MoveRotation (newRotation);
 		}
 	}
-	
-	public void Dodge()
-    {
-		anim.SetTrigger(hashDodge);
-		
-    }
-	
-	public void Block()
-    {
-		anim.SetTrigger(hashBlock);
-
-    }
-	public void BackStep()
-    {
-		anim.SetTrigger(hashBackstep);
-    }
-	public void OnNormalAttack()
-	{
-		anim.SetTrigger(hashNormalAttack);
-	}
-	public void OnSmashAttack()
-	{
-		anim.SetTrigger(hashSmashAttack);
-	}
-
 
 	// Function to tell whether or not the player is on ground.
 	public bool IsGrounded()

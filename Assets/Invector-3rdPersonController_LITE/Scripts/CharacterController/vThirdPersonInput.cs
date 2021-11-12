@@ -4,6 +4,8 @@ namespace Invector.vCharacterController
 {
     public class vThirdPersonInput : MonoBehaviour
     {
+        public bool isMoving;
+
         #region Variables       
 
         [Header("Controller Input")]
@@ -18,13 +20,17 @@ namespace Invector.vCharacterController
         public string rotateCameraYInput = "Mouse Y";
 
         [HideInInspector] public vThirdPersonController cc;
+        [HideInInspector] public vThirdPersonAnimator aa;
         [HideInInspector] public vThirdPersonCamera tpCamera;
         [HideInInspector] public Camera cameraMain;
+        [HideInInspector] public vThirdPersonMotor mm;
 
         #endregion
 
         protected virtual void Start()
         {
+            isMoving = true;
+
             InitilizeController();
             InitializeTpCamera();
         }
@@ -40,15 +46,6 @@ namespace Invector.vCharacterController
         {
             InputHandle();                  // update the input methods
             cc.UpdateAnimator();            // updates the Animator Parameters
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                cc.ComboAttack();
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                cc.SkillAttack();
-            }
         }
 
         public virtual void OnAnimatorMove()
@@ -88,12 +85,18 @@ namespace Invector.vCharacterController
             SprintInput();
             StrafeInput();
             JumpInput();
+            cc.Attack();
+
         }
 
         public virtual void MoveInput()
         {
-            cc.input.x = Input.GetAxis(horizontalInput);
-            cc.input.z = Input.GetAxis(verticallInput);
+            if(isMoving == true)
+            {
+                cc.input.x = Input.GetAxis(horizontalInput);
+                cc.input.z = Input.GetAxis(verticallInput);
+            }
+
         }
 
         protected virtual void CameraInput()
@@ -157,5 +160,14 @@ namespace Invector.vCharacterController
         // Input to trigger Attack
         #endregion
 
+        public void moveStop()
+        {
+            isMoving = false;
+        }
+        public void moveStart()
+        {
+            isMoving = true;
+            
+        }
     }
 }

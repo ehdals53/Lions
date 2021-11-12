@@ -125,13 +125,16 @@ namespace Invector.vCharacterController
             else
                 animator.CrossFadeInFixedTime("JumpMove", .2f);
         }
-        public virtual void ComboAttack()
+
+        
+        public void Attack()
         {
-            animator.SetTrigger("Combo");
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("Combo");
+            }
+
         }
-        public virtual void SkillAttack()
-        {
-            animator.SetTrigger("Skill");
-        }
+        
     }
 }
