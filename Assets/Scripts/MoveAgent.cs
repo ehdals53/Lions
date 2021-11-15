@@ -13,6 +13,7 @@ public class MoveAgent : MonoBehaviour
     private float damping = 1.0f;
     private NavMeshAgent agent;
     private Transform enemyTr;
+    private bool ismoving;
 
     private bool _patrolling;
     public bool patrolling
@@ -48,6 +49,7 @@ public class MoveAgent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ismoving = true;
         enemyTr = GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
@@ -76,8 +78,19 @@ public class MoveAgent : MonoBehaviour
         if (agent.isPathStale) return;
 
         agent.destination = pos;
-        agent.isStopped = false;
 
+        if(ismoving == true)
+            agent.isStopped = false;
+        if (ismoving == false)
+            agent.isStopped = true;
+    }
+    public void StopBoss()
+    {
+        ismoving = false;
+    }
+    public void StartBoss()
+    {
+        ismoving = true;
     }
     public void Stop()
     {

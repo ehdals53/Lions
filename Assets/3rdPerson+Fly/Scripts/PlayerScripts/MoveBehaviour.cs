@@ -47,6 +47,7 @@ public class MoveBehaviour : GenericBehaviour
 	public AudioSource walkSound;
 	public AudioSource runSound;
 	public AudioSource sprintSound;
+	public AudioSource JumpLandSound;
 
 	// Start is always called after any Awake functions.
 	void Start()
@@ -136,7 +137,7 @@ public class MoveBehaviour : GenericBehaviour
     {
         if (behaviourManager.IsGrounded())
         {
-			if(speed <= 2.0f && speed > 1.0f)
+			if(speed <= 2.0f && speed > 1.3f)
             {
 				sprintSound.Play();
             }
@@ -146,7 +147,7 @@ public class MoveBehaviour : GenericBehaviour
     {
         if (behaviourManager.IsGrounded())
         {
-			if (speed <= 1.0f && speed > 0.15f)
+			if (speed <= 1.3f && speed > 0.1f)
             {
 				runSound.Play();
             }
@@ -156,10 +157,17 @@ public class MoveBehaviour : GenericBehaviour
     {
         if (behaviourManager.IsGrounded())
         {
-			if (speed <= 0.15f && speed > 0.0f)
+			if (speed <= 0.1f && speed > 0.0f)
             {
 				walkSound.Play();
             }
+        }
+    }
+	void Jump_Land_Sound()
+    {
+        if (behaviourManager.IsGrounded())
+        {
+			JumpLandSound.Play();
         }
     }
 	void AttackManagement() // 기본 공격 함수

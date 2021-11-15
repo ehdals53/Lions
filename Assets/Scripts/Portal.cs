@@ -18,7 +18,7 @@ public class Portal1 : MonoBehaviour
             portalMessage.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)) 
             {
-                SceneManager.LoadScene("3Stage");
+                SceneManager.LoadScene("2Stage");
             }
 
         }

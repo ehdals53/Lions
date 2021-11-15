@@ -54,7 +54,6 @@ public class PlayerDamage : MonoBehaviour
         anim.SetTrigger(die);
         GetComponent<MoveBehaviour>().enabled = false;
         GetComponent<BasicBehaviour>().enabled = false;
-        GetComponent<AimBehaviourBasic>().enabled = false;
         GetComponent<MP_Player>().enabled = false;
 
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");

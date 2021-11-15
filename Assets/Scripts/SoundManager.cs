@@ -25,7 +25,8 @@ public class SoundManager : MonoBehaviour
 	public AudioSource smashSound;
 
 	[Header("Player Hit Sound")]
-	public AudioSource Lighthit_voice;
+	public AudioSource Lighthit_1_voice;
+	public AudioSource Lighthit_2_voice;
 	public AudioSource Heavyhit_voice;
 	public AudioSource Die_voice;
 
@@ -82,6 +83,7 @@ public class SoundManager : MonoBehaviour
     {
 		_JumpSound.Play();
     }
+
 	public void Dodge_voice()
     {
 		_DodgeSound.Play();
@@ -91,10 +93,13 @@ public class SoundManager : MonoBehaviour
 		_BlockSound.Play();
     }
 
-	public void LightHit_Voice()
+	public void LightHit_1_Voice()
     {
-		Lighthit_voice.Play();
-
+		Lighthit_1_voice.Play();
+	}
+	public void LightHit_2_Voice()
+	{
+		Lighthit_2_voice.Play();
 	}
 	public void HeavyHit_Voice()
     {

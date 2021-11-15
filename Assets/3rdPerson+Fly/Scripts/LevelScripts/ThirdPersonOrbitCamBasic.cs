@@ -31,7 +31,8 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 
 	void Awake()
 	{
-
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.Locked;
 
 		// Reference to the camera transform.
 		cam = transform;
@@ -58,8 +59,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 
 	void Update()
 	{
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Confined;
+
 		// Get mouse movement to orbit the camera.
 		// Mouse:
 		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
