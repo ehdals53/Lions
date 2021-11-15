@@ -43,8 +43,13 @@ public class MoveBehaviour : GenericBehaviour
 
 	MP_Player mp_Player;
 
-    // Start is always called after any Awake functions.
-    void Start()
+	[Header("FootStep Sound")]
+	public AudioSource walkSound;
+	public AudioSource runSound;
+	public AudioSource sprintSound;
+
+	// Start is always called after any Awake functions.
+	void Start()
 	{
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
@@ -73,7 +78,7 @@ public class MoveBehaviour : GenericBehaviour
 		if (!jump && Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
 			jump = true;
-            if (Input.GetMouseButtonDown(0) && (mp_Player.mp_Cur > mp_Player.SkillMP))
+            if (!jumpattack && Input.GetMouseButtonDown(0) && (mp_Player.mp_Cur > mp_Player.SkillMP))
             {
 				jumpattack = true;
             }
@@ -127,6 +132,36 @@ public class MoveBehaviour : GenericBehaviour
 		Dash_Left();
 		Dash_Right();
 	}
+	void FootStep_Sprint_Sound()
+    {
+        if (behaviourManager.IsGrounded())
+        {
+			if(speed <= 2.0f && speed > 1.0f)
+            {
+				sprintSound.Play();
+            }
+        }
+    }
+	void FootStep_Run_Sound()
+    {
+        if (behaviourManager.IsGrounded())
+        {
+			if (speed <= 1.0f && speed > 0.15f)
+            {
+				runSound.Play();
+            }
+        }
+    }
+	void FootStep_Walk_Sound()
+    {
+        if (behaviourManager.IsGrounded())
+        {
+			if (speed <= 0.15f && speed > 0.0f)
+            {
+				walkSound.Play();
+            }
+        }
+    }
 	void AttackManagement() // 기본 공격 함수
 
 	{

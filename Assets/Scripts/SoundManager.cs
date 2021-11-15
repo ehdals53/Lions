@@ -8,16 +8,19 @@ public class SoundManager : MonoBehaviour
 	public AudioSource _JumpSound;
 	public AudioSource _DodgeSound;
 	public AudioSource _BlockSound;
-	public AudioSource _BackStepSound;
+
 
 	[Header("Player Attack SOUNDS")]
 	public AudioSource NormalAtk_voice_1;
 	public AudioSource NormalAtk_voice_2;
 	public AudioSource NormalAtk_voice_3;
+	public AudioSource NormalAtk_voice_4;
+	public AudioSource NormalAtk_voice_5;
 	public AudioSource SmashAtk_voice_1;
 	public AudioSource SmashAtk_voice_2;
 	public AudioSource SmashAtk_voice_3;
 	public AudioSource CounterAtk_voice;
+	public AudioSource JumpAtk_voice;
 	public AudioSource swordSound;
 	public AudioSource smashSound;
 
@@ -25,6 +28,7 @@ public class SoundManager : MonoBehaviour
 	public AudioSource Lighthit_voice;
 	public AudioSource Heavyhit_voice;
 	public AudioSource Die_voice;
+
 
 	public void NormalAtk_SwordSound()
 	{
@@ -46,7 +50,14 @@ public class SoundManager : MonoBehaviour
 	{
 		NormalAtk_voice_3.Play();
 	}
-
+	public void NormalAtk_voice4()
+	{
+		NormalAtk_voice_4.Play();
+	}
+	public void NormalAtk_voice5()
+	{
+		NormalAtk_voice_5.Play();
+	}
 	public void SmashAtk_voice1()
 	{
 		SmashAtk_voice_1.Play();
@@ -63,6 +74,10 @@ public class SoundManager : MonoBehaviour
     {
 		CounterAtk_voice.Play();
     }
+	public void JumpAtk_Voice()
+    {
+		JumpAtk_voice.Play();
+    }
 	public void Jump_voice()
     {
 		_JumpSound.Play();
@@ -75,10 +90,7 @@ public class SoundManager : MonoBehaviour
     {
 		_BlockSound.Play();
     }
-	public void Backstep_voice()
-    {
-		_BackStepSound.Play();
-    }
+
 	public void LightHit_Voice()
     {
 		Lighthit_voice.Play();
