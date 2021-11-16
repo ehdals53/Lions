@@ -107,14 +107,14 @@ public class PlayerDamage : MonoBehaviour
             }
             if (gameObject.tag == "Defence")
             {
-                anim.Play("Defence_hit");
+                anim.Play("Revenge_Guard_Accept");
                 DefenceText.text = "Defence !";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
-                anim.Play("Counter");
+                anim.Play("Revenge_Guard_Attack_ver_B");
                 CounterText.text = "Counter Attack !";
                 CounterText.gameObject.SetActive(true);
 
@@ -139,14 +139,14 @@ public class PlayerDamage : MonoBehaviour
             }
             if (gameObject.tag == "Defence")
             {
-                anim.Play("Defence_hit");
+                anim.Play("Revenge_Guard_Accept");
                 DefenceText.text = "Defence !";
                 DefenceText.gameObject.SetActive(true);
 
             }
             if (gameObject.tag == "Parrying")
             {
-                anim.Play("Counter");
+                anim.Play("Revenge_Guard_Attack_ver_B");
                 CounterText.text = "Counter Attack !";
                 CounterText.gameObject.SetActive(true);
 
