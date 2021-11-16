@@ -329,7 +329,6 @@ public class BasicBehaviour : MonoBehaviour
 			rBody.MoveRotation (newRotation);
 		}
 	}
-
 	// Function to tell whether or not the player is on ground.
 	public bool IsGrounded()
 	{

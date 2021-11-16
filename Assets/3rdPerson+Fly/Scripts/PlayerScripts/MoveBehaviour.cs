@@ -16,6 +16,7 @@ public class MoveBehaviour : GenericBehaviour
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
 
+	public bool isRotate;
 
 	public string dashleftButton = "DashLeft";
 	private int dash_Left_Bool;
@@ -52,6 +53,7 @@ public class MoveBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
 	void Start()
 	{
+		isRotate = true;
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
 		guardBool = Animator.StringToHash("Guard");
@@ -481,6 +483,14 @@ public class MoveBehaviour : GenericBehaviour
 		horizontalVelocity.y = 0;
 		behaviourManager.GetRigidBody.velocity = horizontalVelocity;
 	}
+	public void StopRotate()
+    {
+		isRotate = false;
+    }
+	public void StartRotate()
+    {
+		isRotate = true;
+    }
 
 	// Rotate the player to match correct orientation, according to camera and key pressed.
 	Vector3 Rotating(float horizontal, float vertical)
@@ -501,11 +511,12 @@ public class MoveBehaviour : GenericBehaviour
 		if ((behaviourManager.IsMoving() && targetDirection != Vector3.zero))
 		{
 			Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-
 			Quaternion newRotation = Quaternion.Slerp(behaviourManager.GetRigidBody.rotation, targetRotation, behaviourManager.turnSmoothing);
 			behaviourManager.GetRigidBody.MoveRotation(newRotation);
 			behaviourManager.SetLastDirection(targetDirection);
+			
 		}
+		
 		// If idle, Ignore current camera facing and consider last moving direction.
 		if (!(Mathf.Abs(horizontal) > 0.9 || Mathf.Abs(vertical) > 0.9))
 		{

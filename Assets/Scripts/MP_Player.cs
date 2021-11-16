@@ -15,6 +15,7 @@ public class MP_Player : MonoBehaviour
     public float GuardMP = 20.0f;
     public float SprintMP = 20.0f;
     public float SkillMP = 20.0f;
+    public float Skill_H_MP = 50.0f;
 
     public float RegenMP = 10.0f;
 
@@ -84,4 +85,12 @@ public class MP_Player : MonoBehaviour
             mp_Cur -= SprintMP * Time.deltaTime;
         }
     } 
+
+    public void SKILL_H_MP()
+    {
+        if(mp_Cur > 50.0f)
+        {
+            mp_Cur -= Skill_H_MP;
+        }
+    }
 }

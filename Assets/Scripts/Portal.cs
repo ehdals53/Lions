@@ -14,9 +14,9 @@ public class Portal1 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            portalText.text = "Space 키를 누르면 다음 스테이지로 이동합니다 !";
+            portalText.text = "G 키를 누르면 다음 스테이지로 이동합니다 !";
             portalMessage.gameObject.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Space)) 
+            if (Input.GetKeyDown(KeyCode.G)) 
             {
                 SceneManager.LoadScene("2Stage");
             }

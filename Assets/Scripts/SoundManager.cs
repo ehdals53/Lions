@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
 	public AudioSource JumpAtk_voice;
 	public AudioSource swordSound;
 	public AudioSource smashSound;
+	public AudioSource Skill_H_voice;
 
 	[Header("Player Hit Sound")]
 	public AudioSource Lighthit_1_voice;
@@ -78,6 +79,11 @@ public class SoundManager : MonoBehaviour
 	public void JumpAtk_Voice()
     {
 		JumpAtk_voice.Play();
+    }
+
+	public void SKill_H_VOICE()
+    {
+		Skill_H_voice.Play();
     }
 	public void Jump_voice()
     {
