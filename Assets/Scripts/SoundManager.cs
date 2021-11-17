@@ -21,8 +21,10 @@ public class SoundManager : MonoBehaviour
 	public AudioSource SmashAtk_voice_3;
 	public AudioSource CounterAtk_voice;
 	public AudioSource JumpAtk_voice;
-	public AudioSource swordSound;
-	public AudioSource smashSound;
+	public AudioSource AttackSound_1;
+	public AudioSource AttackSound_2;
+	public AudioSource SkillSound_1;
+	public AudioSource SkillSound_2;
 	public AudioSource Skill_H_voice;
 
 	[Header("Player Hit Sound")]
@@ -32,13 +34,21 @@ public class SoundManager : MonoBehaviour
 	public AudioSource Die_voice;
 
 
-	public void NormalAtk_SwordSound()
+	public void ATTACK_SOUND_1()
 	{
-		swordSound.Play();
+		AttackSound_1.Play();
 	}
-	public void SmashAtk_SwordSound()
+	public void ATTACK_SOUND_2()
 	{
-		smashSound.Play();
+		AttackSound_2.Play();
+	}
+	public void SKILL_SOUND_1()
+	{
+		SkillSound_1.Play();
+	}
+	public void SKILL_SOUND_2()
+	{
+		SkillSound_2.Play();
 	}
 	public void NormalAtk_voice1()
 	{

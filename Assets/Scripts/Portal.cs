@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class Portal1 : MonoBehaviour
+public class Portal : MonoBehaviour
 {
     public GameObject portalMessage;
     public TextMeshProUGUI portalText;
@@ -16,7 +16,7 @@ public class Portal1 : MonoBehaviour
         {
             portalText.text = "G 키를 누르면 다음 스테이지로 이동합니다 !";
             portalMessage.gameObject.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.G)) 
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 SceneManager.LoadScene("2Stage");
             }
