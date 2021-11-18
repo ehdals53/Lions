@@ -23,7 +23,7 @@ public class PlayerDamage : MonoBehaviour
     private readonly int die = Animator.StringToHash("PlayerDie");
 
     public GameObject player;
-
+    public GameObject GameOverUI;
 
 
     // Start is called before the first frame update
@@ -58,7 +58,9 @@ public class PlayerDamage : MonoBehaviour
 
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         boss.SendMessage("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
-
+        GameOverUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     void BossDamage()
     {

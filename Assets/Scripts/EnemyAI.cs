@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum State
+    // 상태를 표현하기 위한 열거형 변수 정의
+    public enum State   
     {
         PATROL,
         TRACE,
@@ -50,19 +51,21 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(CheckState());
         StartCoroutine(Action());
     }
+    // 상태를 검사하는 코루틴 함수
     IEnumerator CheckState()
     {
-        while (!isDie)
+        while (!isDie) // 사망하기 전까지 도는 무한루프
         {
-            if (state == State.DIE) yield break;
+            if (state == State.DIE) yield break; // 상태가 사망이면 코루틴함수 종료
 
+            // 플레이어와 적 캐릭터 간의 거리를 계산
             float dist = Vector3.Distance(playerTr.position, enemyTr.position);
 
-            if(dist <= attackDist)
+            if(dist <= attackDist)  // 공격 거리 이내일 때
             {
                 state = State.ATTACK;
             }
-            else if (dist <= traceDist)
+            else if (dist <= traceDist) // 추적 거리 이내일 때
             {
                 state = State.TRACE;
             }
@@ -70,9 +73,10 @@ public class EnemyAI : MonoBehaviour
             {
                 state = State.PATROL;
             }
-            yield return ws;
+            yield return ws;    // 0.3초 대기하는 동안 제어권 양보
         }
     }
+    // 상태에 따라 행동을 처리하는 코루틴 함수
     IEnumerator Action()
     {
         while (!isDie)

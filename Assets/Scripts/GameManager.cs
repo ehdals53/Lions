@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject MenuSet;
     public GameObject Keyboard;
     public GameObject Help;
+    public GameObject Portal_UI;
 
     void Start()
     {
@@ -68,5 +69,13 @@ public class GameManager : MonoBehaviour
     public void GameExit()
     {
         Application.Quit();
+    }
+    public void NextStageBtn()
+    {
+        SceneManager.LoadScene("SceneLoader_1");
+    }
+    public void CancelBtn()
+    {
+        Portal_UI.SetActive(false);
     }
 }
