@@ -75,7 +75,7 @@ public class MP_Player : MonoBehaviour
     {
         if(mp_Cur > SkillMP)
         {
-            mp_Cur -= GuardMP;
+            mp_Cur -= SkillMP;
         }
     }
     public void Sprint_MP()

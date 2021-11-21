@@ -16,8 +16,6 @@ public class MoveBehaviour : GenericBehaviour
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
 
-	public bool isRotate;
-
 	public string dashleftButton = "DashLeft";
 	private int dash_Left_Bool;
 	private bool dash_Left;
@@ -53,7 +51,6 @@ public class MoveBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
 	void Start()
 	{
-		isRotate = true;
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
 		guardBool = Animator.StringToHash("Guard");
@@ -109,6 +106,7 @@ public class MoveBehaviour : GenericBehaviour
 		{
 			dash_Right = true;
 		}
+		
 
 		// 공격 및 스킬 공격 입력
 		if (!jump && Input.GetMouseButtonDown(0) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
@@ -119,6 +117,11 @@ public class MoveBehaviour : GenericBehaviour
 		{
 			SkillManagement();
 		}
+		if (!jump && Input.GetMouseButtonDown(2) && (mp_Player.mp_Cur > mp_Player.Skill_H_MP) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
+        {
+			HyperSkillManagement();
+        }
+
 
 	}
 	// LocalFixedUpdate overrides the virtual function of the base class.
@@ -172,6 +175,7 @@ public class MoveBehaviour : GenericBehaviour
 			JumpLandSound.Play();
         }
     }
+
 	void AttackManagement() // 기본 공격 함수
 
 	{
@@ -196,10 +200,27 @@ public class MoveBehaviour : GenericBehaviour
 		if (!behaviourManager.GetAnim.GetBool(jumpBool) && !behaviourManager.GetAnim.GetBool(guardBool)
 			&& !behaviourManager.GetAnim.GetBool(dash_Front_Bool) && !behaviourManager.GetAnim.GetBool(dash_Back_Bool)
 			&& !behaviourManager.GetAnim.GetBool(dash_Left_Bool) && !behaviourManager.GetAnim.GetBool(dash_Right_Bool)
-			&& !behaviourManager.GetAnim.GetBool(jumpattackBool) && behaviourManager.IsGrounded())
+			&& !behaviourManager.GetAnim.GetBool(jumpattackBool) && behaviourManager.IsGrounded() && (mp_Player.mp_Cur > mp_Player.SkillMP))
 		{
 			behaviourManager.LockTempBehaviour(this.behaviourCode);
 			behaviourManager.GetAnim.SetTrigger("Skill");
+
+			// Temporarily change player friction to pass through obstacles.
+			GetComponent<CapsuleCollider>().material.dynamicFriction = 0f;
+			GetComponent<CapsuleCollider>().material.staticFriction = 0f;
+			// Remove vertical velocity to avoid "super jumps" on slope ends.
+			RemoveVerticalVelocity();
+		}
+	}
+	void HyperSkillManagement()
+    {
+		if (!behaviourManager.GetAnim.GetBool(jumpBool) && !behaviourManager.GetAnim.GetBool(guardBool)
+	&& !behaviourManager.GetAnim.GetBool(dash_Front_Bool) && !behaviourManager.GetAnim.GetBool(dash_Back_Bool)
+	&& !behaviourManager.GetAnim.GetBool(dash_Left_Bool) && !behaviourManager.GetAnim.GetBool(dash_Right_Bool)
+	&& !behaviourManager.GetAnim.GetBool(jumpattackBool) && behaviourManager.IsGrounded() && (mp_Player.mp_Cur > mp_Player.Skill_H_MP))
+		{
+			behaviourManager.LockTempBehaviour(this.behaviourCode);
+			behaviourManager.GetAnim.SetTrigger("HyperSkill");
 
 			// Temporarily change player friction to pass through obstacles.
 			GetComponent<CapsuleCollider>().material.dynamicFriction = 0f;
@@ -483,14 +504,6 @@ public class MoveBehaviour : GenericBehaviour
 		horizontalVelocity.y = 0;
 		behaviourManager.GetRigidBody.velocity = horizontalVelocity;
 	}
-	public void StopRotate()
-    {
-		isRotate = false;
-    }
-	public void StartRotate()
-    {
-		isRotate = true;
-    }
 
 	// Rotate the player to match correct orientation, according to camera and key pressed.
 	Vector3 Rotating(float horizontal, float vertical)

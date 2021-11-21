@@ -27,11 +27,16 @@ public class SoundManager : MonoBehaviour
 	public AudioSource SkillSound_2;
 	public AudioSource Skill_H_voice;
 
+
+
+
+
 	[Header("Player Hit Sound")]
 	public AudioSource Lighthit_1_voice;
 	public AudioSource Lighthit_2_voice;
 	public AudioSource Heavyhit_voice;
 	public AudioSource Die_voice;
+
 
 
 	public void ATTACK_SOUND_1()

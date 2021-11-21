@@ -109,6 +109,7 @@ public class EnemyAI : MonoBehaviour
                     moveAgent.Stop();
                     animator.SetTrigger(hashDie);
                     GetComponent<BoxCollider>().enabled = false;
+                    GetComponent<CapsuleCollider>().enabled = false;
                     Portal.SetActive(true);
                     break;
 
