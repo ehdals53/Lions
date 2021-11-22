@@ -13,7 +13,7 @@ public class EnemyFire : MonoBehaviour
     private int attackNumber;
     private bool enableAct;
     private float nextFire = 0.0f;
-    private readonly float fireRate = 3.0f;
+    public float fireRate = 5.0f;
     private readonly float damping = 10.0f;
 
     // Start is called before the first frame update

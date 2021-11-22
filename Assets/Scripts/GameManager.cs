@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
         {
             Cursor.visible = false;
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
         if (Input.GetButtonDown("Cancel"))
         {
@@ -70,9 +74,13 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void NextStageBtn()
+    public void Next_2_StageBtn()
     {
         SceneManager.LoadScene("SceneLoader_1");
+    }
+    public void Next_3_StageBtn()
+    {
+        SceneManager.LoadScene("SceneLoader_2");
     }
     public void CancelBtn()
     {
