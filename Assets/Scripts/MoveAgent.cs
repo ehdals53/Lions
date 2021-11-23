@@ -8,8 +8,8 @@ public class MoveAgent : MonoBehaviour
 {
     public List<Transform> wayPoints;
     public int nextIdx;
-    private readonly float patrolSpeed = 1.5f;
-    private readonly float traceSpeed = 4.0f;
+    public float patrolSpeed = 1.5f;
+    public float traceSpeed = 4.0f;
     private float damping = 1.0f;
     private NavMeshAgent agent;
     private Transform enemyTr;

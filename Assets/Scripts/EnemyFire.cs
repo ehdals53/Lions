@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyFire : MonoBehaviour
 {
     private Animator animator;
+    private Rigidbody rigid;
     private Transform playerTr;
     private Transform enemyTr;
     private MoveAgent moveAgent;
@@ -19,6 +20,7 @@ public class EnemyFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rigid = GetComponent<Rigidbody>();
         moveAgent = GetComponent<MoveAgent>();
         playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         enemyTr = GetComponent<Transform>();
@@ -62,18 +64,23 @@ public class EnemyFire : MonoBehaviour
                     break;
                 case 1:
                     animator.SetTrigger("Atk2");
+
                     break;
                 case 2:
                     animator.SetTrigger("Atk3");
+
                     break;
                 case 3:
                     animator.SetTrigger("Atk4");
+
                     break;
                 case 4:
                     animator.SetTrigger("Atk5");
+
                     break;
                 case 5:
                     animator.SetTrigger("Atk6");
+
                     break;
             }
         }
