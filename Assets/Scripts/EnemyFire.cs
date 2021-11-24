@@ -93,4 +93,13 @@ public class EnemyFire : MonoBehaviour
     {
         enableAct = true;
     }
+
+    public void Collider_On()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+    }
+    public void Collider_Off()
+    {
+        GetComponent<BoxCollider>().enabled = false;
+    }
 }

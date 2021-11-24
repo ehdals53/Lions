@@ -82,6 +82,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("SceneLoader_2");
     }
+    public void MainSceneBtn()
+    {
+        SceneManager.LoadScene("Main_SceneLoader");
+    }
     public void CancelBtn()
     {
         Portal_UI.SetActive(false);
