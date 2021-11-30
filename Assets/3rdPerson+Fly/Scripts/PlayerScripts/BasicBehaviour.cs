@@ -1,53 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-// This class manages which player behaviour is active or overriding, and call its local functions.
-// Contains basic setup and common functions used by all the player behaviours.
+// 이 클래스는 활성 또는 오버라이드 중인 플레이어의 동작을 관리하고 로컬 함수를 호출
+// 모든 플레이어 행동에 사용되는 기본 설정 및 공통 기능을 포함
 public class BasicBehaviour : MonoBehaviour
 {
-	public Transform playerCamera;                        // Reference to the camera that focus the player.
-	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
-	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
-	public string sprintButton = "Sprint";                // Default sprint button input name.
+	public Transform playerCamera;                        // 플레이어의 초점을 맞추는 카메라를 참조
+	public float turnSmoothing = 0.06f;                   // 카메라 정면을 맞추기 위해 이동할 때의 회전 속도
+	public float sprintFOV = 80f;                         // 플레이어가 전력질주할 때 카메라에서 사용하는 FOV
+	public string sprintButton = "Sprint";                // 전력질주 입력 버튼 이름
 
-	private float h;                                      // Horizontal Axis.
-	private float v;                                      // Vertical Axis.
-	private int currentBehaviour;                         // Reference to the current player behaviour.
-	private int defaultBehaviour;                         // The default behaviour of the player when any other is not active.
-	private int behaviourLocked;                          // Reference to temporary locked behaviour that forbids override.
-	private Vector3 lastDirection;                        // Last direction the player was moving.
-	private Animator anim;                                // Reference to the Animator component.
-	private ThirdPersonOrbitCamBasic camScript;           // Reference to the third person camera script.
-	private bool sprint;                                  // Boolean to determine whether or not the player activated the sprint mode.
-	private bool changedFOV;                              // Boolean to store when the sprint action has changed de camera FOV.
-	private int hFloat;                                   // Animator variable related to Horizontal Axis.
-	private int vFloat;                                   // Animator variable related to Vertical Axis.
-	private List<GenericBehaviour> behaviours;            // The list containing all the enabled player behaviours.
-	private List<GenericBehaviour> overridingBehaviours;  // List of current overriding behaviours.
-	private Rigidbody rBody;                              // Reference to the player's rigidbody.
-	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
-	private Vector3 colExtents;                           // Collider extents for ground test. 
+	private float h;                                      // 가로축
+	private float v;                                      // 세로축
+	private int currentBehaviour;                         // 현재 플레이어 동작에 대한 참조
+	private int defaultBehaviour;                         // 다른 플레이어가 활성화되지 않은 경우 플레이어의 기본 동작
+	private int behaviourLocked;                          // 오버라이드를 금지하는 임시 잠금 동작에 대한 참조
+	private Vector3 lastDirection;                        // 플레이어가 마지막으로 이동하던 방향
+	private Animator anim;                                // Animator 구성 요소를 참조
+	private MP_Player mp_Player;						  // MP_Player 에 대한 참조 
+	private ThirdPersonOrbitCamBasic camScript;           // 3인칭 카메라 스크립트에 대한 참조
+	private bool sprint;                                  // 플레이어가 전력질주 모드를 활성화했는지 여부를 결정하는 bool
+	private bool changedFOV;                              // 전력질주 동작이 카메라 FOV를 변경한 경우 저장할 bool
+	private int hFloat;                                   // 가로축과 관련된 Animator 변수
+	private int vFloat;                                   // 수직 축과 관련된 Animator 변수
+	private List<GenericBehaviour> behaviours;            // 활성화된 모든 플레이어의 동작을 포함하는 목록
+	private List<GenericBehaviour> overridingBehaviours;  // 현재 오버라이드 동작 목록
+	private Rigidbody rBody;                              // 플레이어의 Rigidbody에 대한 참조
+	private int groundedBool;                             // 플레이어가 땅에 있는지 여부에 따라 달라지는 Animator 변수
+	private Vector3 colExtents;                           // 테스트를 위해 범위를 충돌시킴
 
-	MP_Player mp_Player;
-	// Get current horizontal and vertical axes.
+	// 현재 가로 및 세로 축을 가져옴
 	public float GetH { get { return h; } }
 	public float GetV { get { return v; } }
-
-	// Get the player camera script.
+	// 플레이어 카메라 스크립트를 가져옴
 	public ThirdPersonOrbitCamBasic GetCamScript { get { return camScript; } }
-
-	// Get the player's rigid body.
+	// 플레이어의 Rigidbody를 가져옴
 	public Rigidbody GetRigidBody { get { return rBody; } }
-
-	// Get the player's animator controller.
+	// 플레이어의 애니메이터 컨트롤러를 가져옴
 	public Animator GetAnim { get { return anim; } }
-
-	// Get current default behaviour.
+	// 현재 기본 동작을 가져옴
 	public int GetDefaultBehaviour {  get { return defaultBehaviour; } }
 
 	void Awake ()
 	{
-		// Set up the references.
+		// 참조를 설정
 		behaviours = new List<GenericBehaviour> ();
 		overridingBehaviours = new List<GenericBehaviour>();
 		anim = GetComponent<Animator> ();
@@ -55,28 +51,27 @@ public class BasicBehaviour : MonoBehaviour
 		vFloat = Animator.StringToHash("V");
 		camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic> ();
 		rBody = GetComponent<Rigidbody> ();
+		mp_Player = GetComponent<MP_Player>();
 
-		// Grounded verification variables.
+		// 지면인지 확인하는 변수
 		groundedBool = Animator.StringToHash("Grounded");
 		colExtents = GetComponent<Collider>().bounds.extents;
-
-		mp_Player = GetComponent<MP_Player>();
 	}
 
 	void Update()
 	{
-		// Store the input axes.
+		// 입력 축을 저장
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 
-		// Set the input axes on the Animator Controller.
+		// Animator 컨트롤러에 입력 축을 설정
 		anim.SetFloat(hFloat, h, 0.1f, Time.deltaTime);
 		anim.SetFloat(vFloat, v, 0.1f, Time.deltaTime);
 
-		// Toggle sprint by input.
+		// 전력질주를 입력으로 전환
 		sprint = Input.GetButton (sprintButton);
 
-		// Set the correct camera FOV for sprint mode.
+		// 카메라 FOV를 전력질주 모드로 적절하게 설정
 		if(IsSprinting() && (mp_Player.mp_Cur > mp_Player.SprintMP))
 		{
 			changedFOV = true;
@@ -87,14 +82,13 @@ public class BasicBehaviour : MonoBehaviour
 			camScript.ResetFOV();
 			changedFOV = false;
 		}
-		// Set the grounded test on the Animator Controller.
+		// Animator 컨트롤러에서 지면 테스트를 설정
 		anim.SetBool(groundedBool, IsGrounded());
 	}
 
-	// Call the FixedUpdate functions of the active or overriding behaviours.
 	void FixedUpdate()
 	{
-		// Call the active behaviour if no other is overriding.
+		// 재정의하지 않으면 활성 동작을 호출
 		bool isAnyBehaviourActive = false;
 		if (behaviourLocked > 0 || overridingBehaviours.Count == 0)
 		{
@@ -107,7 +101,7 @@ public class BasicBehaviour : MonoBehaviour
 				}
 			}
 		}
-		// Call the overriding behaviours if any.
+		// 우선시 되는 행동이 있으면 호출
 		else
 		{
 			foreach (GenericBehaviour behaviour in overridingBehaviours)
@@ -116,7 +110,7 @@ public class BasicBehaviour : MonoBehaviour
 			}
 		}
 
-		// Ensure the player will stand on ground if no behaviour is active or overriding.
+		// 활성화되거나 오버라이딩되는 동작이 없는 경우 플레이어가 지면에 서있는지 확인
 		if (!isAnyBehaviourActive && overridingBehaviours.Count == 0)
 		{
 			rBody.useGravity = true;
@@ -124,10 +118,10 @@ public class BasicBehaviour : MonoBehaviour
 		}
 	}
 
-	// Call the LateUpdate functions of the active or overriding behaviours.
+	// 활성 또는 우선 동작의 LateUpdate 기능을 호출
 	private void LateUpdate()
 	{
-		// Call the active behaviour if no other is overriding.
+		// 재정의하지 않으면 활성 동작을 호출
 		if (behaviourLocked > 0 || overridingBehaviours.Count == 0)
 		{
 			foreach (GenericBehaviour behaviour in behaviours)
@@ -138,7 +132,7 @@ public class BasicBehaviour : MonoBehaviour
 				}
 			}
 		}
-		// Call the overriding behaviours if any.
+		// 우선시 되는 행동이 있으면 호출
 		else
 		{
 			foreach (GenericBehaviour behaviour in overridingBehaviours)
@@ -148,22 +142,21 @@ public class BasicBehaviour : MonoBehaviour
 		}
 
 	}
-
-	// Put a new behaviour on the behaviours watch list.
+	// 행동 감시 목록에 새로운 동작을 추가
 	public void SubscribeBehaviour(GenericBehaviour behaviour)
 	{
 		behaviours.Add (behaviour);
 	}
 
-	// Set the default player behaviour.
+	// 기본 플레이어 동작을 설정
 	public void RegisterDefaultBehaviour(int behaviourCode)
 	{
 		defaultBehaviour = behaviourCode;
 		currentBehaviour = behaviourCode;
 	}
 
-	// Attempt to set a custom behaviour as the active one.
-	// Always changes from default behaviour to the passed one.
+	// 사용자 지정 동작을 활성 동작으로 설정
+	// 항상 기본 동작에서 전달된 동작으로 변경
 	public void RegisterBehaviour(int behaviourCode)
 	{
 		if (currentBehaviour == defaultBehaviour)
@@ -171,8 +164,7 @@ public class BasicBehaviour : MonoBehaviour
 			currentBehaviour = behaviourCode;
 		}
 	}
-
-	// Attempt to deactivate a player behaviour and return to the default one.
+	// 플레이어 동작을 비활성화 하고 기본 동작으로 돌아감
 	public void UnregisterBehaviour(int behaviourCode)
 	{
 		if (currentBehaviour == behaviourCode)
@@ -181,8 +173,8 @@ public class BasicBehaviour : MonoBehaviour
 		}
 	}
 
-	// Attempt to override any active behaviour with the behaviours on queue.
-	// Use to change to one or more behaviours that must overlap the active one (ex.: aim behaviour).
+	// 활성 동작을 대기열에 있는 동작으로 재정의
+	// 활성 동작과 겹쳐야 하는 하나 이상의 동작으로 변경할 때 사용
 	public bool OverrideWithBehaviour(GenericBehaviour behaviour)
 	{
 		// Behaviour is not on queue.

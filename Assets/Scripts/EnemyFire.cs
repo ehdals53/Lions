@@ -37,7 +37,7 @@ public class EnemyFire : MonoBehaviour
             if (Time.time >= nextFire)
             {
                 Fire();
-                nextFire = Time.time + fireRate + Random.Range(0.0f, 1.0f);
+                nextFire = Time.time + fireRate + Random.Range(0.0f, 3.0f);
 
             }
             if (enableAct)
@@ -64,23 +64,18 @@ public class EnemyFire : MonoBehaviour
                     break;
                 case 1:
                     animator.SetTrigger("Atk2");
-
                     break;
                 case 2:
                     animator.SetTrigger("Atk3");
-
                     break;
                 case 3:
                     animator.SetTrigger("Atk4");
-
                     break;
                 case 4:
                     animator.SetTrigger("Atk5");
-
                     break;
                 case 5:
                     animator.SetTrigger("Atk6");
-
                     break;
             }
         }
@@ -101,5 +96,9 @@ public class EnemyFire : MonoBehaviour
     public void Collider_Off()
     {
         GetComponent<BoxCollider>().enabled = false;
+    }
+    public void CapsuleCollider_Off()
+    {
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 }

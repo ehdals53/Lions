@@ -71,7 +71,6 @@ public class EnemyDamage : MonoBehaviour
                 Normaldmg = string.Format("{0}", NormalDamage);
                 NormalDmgText1.text = Normaldmg;
                 NormalDmgText1.gameObject.SetActive(true);
-
             }
             if (other.tag == "Col_SmashAtk")
             {
@@ -79,7 +78,6 @@ public class EnemyDamage : MonoBehaviour
                 Smashdmg = string.Format("{0}", SmashDamage);
                 SmashDmgText2.text = Smashdmg;
                 SmashDmgText2.gameObject.SetActive(true);
-
             }
             if (other.tag == "Col_CounterAtk")
             {
@@ -87,7 +85,6 @@ public class EnemyDamage : MonoBehaviour
                 Counterdmg = string.Format("{0}", CounterDamage);
                 CounterDmgText3.text = Counterdmg;
                 CounterDmgText3.gameObject.SetActive(true);
-                
             }
             if(other.tag == "Col_HyperAtk")
             {
@@ -95,7 +92,6 @@ public class EnemyDamage : MonoBehaviour
                 HyperSkilldmg = string.Format("{0}", HyperSkillDamage);
                 HyperSkillDmgText.text = HyperSkilldmg;
                 HyperSkillDmgText.gameObject.SetActive(true);
-
             }
         }
     }

@@ -112,7 +112,6 @@ public class EnemyAI : MonoBehaviour
                     //GetComponent<CapsuleCollider>().enabled = false;
                     Portal.SetActive(true);
                     break;
-
             }
         }
     }

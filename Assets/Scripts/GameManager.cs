@@ -9,16 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject Keyboard;
     public GameObject Help;
     public GameObject Portal_UI;
-
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
     }
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             Cursor.visible = false;
@@ -27,7 +24,6 @@ public class GameManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-
         if (Input.GetButtonDown("Cancel"))
         {
             Cursor.visible = true;
@@ -65,7 +61,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void ReStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
